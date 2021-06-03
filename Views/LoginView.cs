@@ -2,10 +2,10 @@
 using Android.OS;
 using AndroidX.AppCompat.App;
 
-namespace MP140
+namespace MP140.Views
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class LoginView : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
