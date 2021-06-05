@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Models\RoomDataModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\TodoModel.cs" />
     <Compile Include="Models\UserModel.cs" />
