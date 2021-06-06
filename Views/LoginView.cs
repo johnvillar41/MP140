@@ -12,6 +12,11 @@ namespace MP140.Views
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);            
             SetContentView(Resource.Layout.activity_login);
+            InitializeViews();
         }        
+        private void InitializeViews()
+        {
+            
+        }
     }
 }

@@ -1,7 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+	android:gravity="center"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="#faebd7">
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+		app:cardBackgroundColor="#5b5a58"
+        card_view:cardCornerRadius="5dp">
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:id="@+id/linearLayout1"
+			>		
+            <EditText
+                android:id="@+id/et_username"
+                android:gravity="center"
+                android:hint="Enter username"
+                android:ems="10"
+				android:textColor="#f0ad4e"
+				android:textColorHint="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:gravity="center"
+                android:hint="Enter password"
+				android:textColor="#f0ad4e"
+				android:textColorHint="#fff"
+                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLogin"
+                android:text="Login"
+				android:backgroundTint="#f0ad4e"
+		        />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRegister"
+                android:text="Register"/>
+		
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
