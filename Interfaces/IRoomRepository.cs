@@ -8,5 +8,6 @@ namespace MP140.Interfaces
     {
         List<RoomModel> FetchAllRooms();
         void AddNewRoom(RoomModel newRoom);
+        void DeleteRoom(int roomId);
     }
 }

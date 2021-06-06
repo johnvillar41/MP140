@@ -1,9 +1,11 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using MP140.Interfaces;
+using MP140.Models;
 using MP140.Presenters;
 using MP140.Repositories;
 using static Android.Views.View;
@@ -59,6 +61,22 @@ namespace MP140.Views
             popupDialog.SetContentView(Resource.Layout.popup_register);
             popupDialog.Window.SetSoftInputMode(SoftInput.AdjustResize);
             popupDialog.Show();
+
+            EditText username = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupUsernamame);
+            EditText password = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupPassword);
+            EditText realname = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupRealname);
+            Button btnRegister = popupDialog.FindViewById<Button>(Resource.Id.btnPopupRegister);
+
+            var newUser = new UserModel
+            {
+                Username = username.Text.ToString(),
+                Password = password.Text.ToString(),
+                Fullname = realname.Text.ToString()
+            };
+            btnRegister.Click += (o, e) =>
+            {
+                _presenter.OnRegister(newUser);
+            };
         }
         private void InitializeViews()
         {
@@ -72,12 +90,16 @@ namespace MP140.Views
 
         public void RedirectToRoomView()
         {
-            throw new System.NotImplementedException();
+            RunOnUiThread(() =>
+            {
+                Intent intent = new Intent(this, typeof(RoomView));
+                StartActivity(intent);
+            });
         }
 
         public void DisplayErrorMessage()
         {
-            throw new System.NotImplementedException();
+            RunOnUiThread(() => { Toast.MakeText(this, "Error!", ToastLength.Short).Show(); });
         }
     }
 }

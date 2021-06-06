@@ -26,6 +26,11 @@ namespace MP140.Repositories
             throw new System.NotImplementedException();
         }
 
+        public void DeleteRoom(int roomId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<RoomModel> FetchAllRooms()
         {
             return new List<RoomModel>

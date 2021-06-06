@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/roomRecyclerView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTodo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,7 +16,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="20sp"
          android:src="@android:drawable/ic_input_add"
-        android:id="@+id/btnAddRoom" />
+        android:id="@+id/btnAddTodo" />
     <ProgressBar
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
@@ -24,4 +24,5 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </RelativeLayout>

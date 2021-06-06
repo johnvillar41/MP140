@@ -1,4 +1,5 @@
 ﻿using MP140.Interfaces;
+using MP140.Models;
 
 namespace MP140.Repositories
 {
@@ -19,6 +20,11 @@ namespace MP140.Repositories
         }
 
         public bool CheckUserLoggedIn(string username, string password)
+        {
+            return true;
+        }
+
+        public void RegisterUser(UserModel newUser)
         {
             throw new System.NotImplementedException();
         }

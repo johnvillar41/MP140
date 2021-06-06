@@ -100,6 +100,7 @@ namespace MP140.Views
         {
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.roomRecyclerView);
             _progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
+            _btnAddRoom = FindViewById<FloatingActionButton>(Resource.Id.btnAddRoom);
             _presenter = new RoomPresenter(this, RoomRepository.SingleInstance);
         }
     }
