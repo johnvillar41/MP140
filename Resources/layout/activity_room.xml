@@ -16,7 +16,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="20sp"
          android:src="@android:drawable/ic_input_add"
-        android:id="@+id/floatingActionButton1" />
+        android:id="@+id/btnAddRoom" />
     <ProgressBar
         android:visibility="invisible"
         android:layout_centerHorizontal="true"

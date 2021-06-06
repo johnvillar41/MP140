@@ -21,7 +21,7 @@ namespace MP140.Repositories
 
         public bool CheckUserLoggedIn(string username, string password)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public void RegisterUser(UserModel newUser)

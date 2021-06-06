@@ -22,11 +22,13 @@ namespace MP140.Presenters
                 if (isLoginAccepted)
                 {
                     _view.RedirectToRoomView();
+                    _view.HideProgressBar();
                     return;
                 }
                 _view.DisplayErrorMessage();
                 _view.HideProgressBar();
             });
+            thread.Start();
         }
         public void OnRegister(UserModel newUser)
         {
