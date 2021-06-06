@@ -66,15 +66,15 @@ namespace MP140.Views
             EditText password = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupPassword);
             EditText realname = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupRealname);
             Button btnRegister = popupDialog.FindViewById<Button>(Resource.Id.btnPopupRegister);
-
-            var newUser = new UserModel
-            {
-                Username = username.Text.ToString(),
-                Password = password.Text.ToString(),
-                Fullname = realname.Text.ToString()
-            };
+            
             btnRegister.Click += (o, e) =>
             {
+                var newUser = new UserModel
+                {
+                    Username = username.Text.ToString(),
+                    Password = password.Text.ToString(),
+                    Fullname = realname.Text.ToString()
+                };
                 _presenter.OnRegister(newUser);
             };
         }

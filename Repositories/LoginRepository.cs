@@ -36,7 +36,10 @@ namespace MP140.Repositories
 
         public void RegisterUser(UserModel newUser)
         {
-            throw new System.NotImplementedException();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}register.php?username={newUser.Username}&password={newUser.Password}&fullname={newUser.Fullname}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
+
         }
     }
 }
