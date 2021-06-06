@@ -3,7 +3,6 @@ using MP140.Models;
 using System.IO;
 using System.Net;
 using System.Text.Json;
-
 namespace MP140.Repositories
 {
     public class LoginRepository : ILoginRepository
@@ -23,19 +22,16 @@ namespace MP140.Repositories
         }
 
         public bool CheckUserLoggedIn(string username, string password)
-        {            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"http://192.168.1.105/TodoPhp/login.php?username={username}&password={password}");
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            var result = reader.ReadToEnd();
-            using JsonDocument doc = JsonDocument.Parse(result);
-            JsonElement root = doc.RootElement;
-            var u1 = root[0];
-            if (u1.ToString().Equals("OK!"))
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}login.php?username={username}&password={password}");
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
+            string res = reader.ReadToEnd();
+            if (res.Contains("OK!"))
             {
                 return true;
             }
-            return false;
+            return false;      
         }
 
         public void RegisterUser(UserModel newUser)
