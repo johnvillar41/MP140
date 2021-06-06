@@ -8,19 +8,15 @@ namespace MP140.Adapter
 {
     public class UserAdapter : RecyclerView.Adapter
     {
-        private readonly List<UserModel> _userModels;
-        private readonly Context _context;
-        public UserAdapter(List<UserModel> roomModels, Context context)
+        private readonly List<UserModel> _userModels;        
+        public UserAdapter(List<UserModel> roomModels)
         {
-            _userModels = roomModels;
-            _context = context;
+            _userModels = roomModels;            
         }
-
         public override int ItemCount
         {
             get { return (_userModels).Count; }
         }
-
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             UserViewHolder viewHolder = holder as UserViewHolder;
