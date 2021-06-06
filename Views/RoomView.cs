@@ -90,10 +90,12 @@ namespace MP140.Views
                     newRoom.RoomType = Constants.RoomType.Sports;
                     break;
             }
-            btnAddRoom.Click += (o, e) => { _presenter.OnAddNewRoom(newRoom); };
+            btnAddRoom.Click += (o, e) =>
+            {
+                _presenter.OnAddNewRoom(newRoom);
+                _adapter.NotifyDataSetChanged();
+            };
         }
-
-
         private void InitializeViews()
         {
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.roomRecyclerView);
