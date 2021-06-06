@@ -62,7 +62,7 @@ namespace MP140.Views
             popupDialog.Window.SetSoftInputMode(SoftInput.AdjustResize);
             popupDialog.Show();
 
-            EditText username = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupUsernamame);
+            EditText username = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupUsername);
             EditText password = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupPassword);
             EditText realname = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupRealname);
             Button btnRegister = popupDialog.FindViewById<Button>(Resource.Id.btnPopupRegister);
