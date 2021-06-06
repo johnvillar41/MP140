@@ -1,17 +1,21 @@
-﻿using Android.Views;
+﻿using Android.Content;
+using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using MP140.Models;
+using MP140.Views;
 using System.Collections.Generic;
 
 namespace MP140.Adapter
 {
     public class RoomAdapter : RecyclerView.Adapter
     {
-        private List<RoomModel> _roomModels;
+        private readonly List<RoomModel> _roomModels;
+        private readonly Context _context;
 
-        public RoomAdapter(List<RoomModel> roomModels)
+        public RoomAdapter(List<RoomModel> roomModels,Context context)
         {
             _roomModels = roomModels;
+            _context = context;
         }
 
         public override int ItemCount
@@ -38,7 +42,13 @@ namespace MP140.Adapter
                     break;
             }
             viewHolder.RoomDescription.Text = _roomModels[position].RoomDescription;
-            viewHolder.RoomName.Text = _roomModels[position].RoomName;           
+            viewHolder.RoomName.Text = _roomModels[position].RoomName;
+            viewHolder.RoomCard.Click += (o, e) =>
+            {
+                Intent intent = new Intent(_context,typeof(TodoView));
+                intent.PutExtra(Constants.ROOM_ID, _roomModels[position].Id);
+                _context.StartActivity(intent);
+            };
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

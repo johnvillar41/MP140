@@ -4,5 +4,6 @@
     {
         public enum Status { Doing, Done }
         public enum RoomType { Academics, Sports, Games, Hangouts }
+        public const string ROOM_ID = "ROOM ID";
     }
 }

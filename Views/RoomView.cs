@@ -1,13 +1,10 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Views;
-using AndroidX.CardView.Widget;
 using AndroidX.RecyclerView.Widget;
 using MP140.Adapter;
 using MP140.Interfaces;
 using MP140.Models;
 using System.Collections.Generic;
-using static Android.Views.View;
 
 namespace MP140.Views
 {
@@ -27,7 +24,7 @@ namespace MP140.Views
         {
             RunOnUiThread(() =>
             {
-                _adapter = new RoomAdapter(rooms);
+                _adapter = new RoomAdapter(rooms, this);
                 _recyclerView.SetAdapter(_adapter);
             });            
         }
