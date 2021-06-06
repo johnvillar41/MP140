@@ -64,6 +64,7 @@
     <Compile Include="Adapter\RoomAdapter.cs" />
     <Compile Include="Adapter\RoomViewHolder.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Interfaces\ILoginView.cs" />
     <Compile Include="Interfaces\IRoomView.cs" />
     <Compile Include="Models\RoomDataModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
