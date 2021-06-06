@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Adapter\RoomAdapter.cs" />
     <Compile Include="Adapter\RoomViewHolder.cs" />
+    <Compile Include="Adapter\UserAdapter.cs" />
+    <Compile Include="Adapter\UserViewHolder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Interfaces\ILoginRepository.cs" />
     <Compile Include="Interfaces\ILoginView.cs" />
@@ -144,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\popup_register.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\popup_users.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\user_recyclerview.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
