@@ -4122,7 +4122,7 @@ namespace MP140
 			public const int txtPopupRoomName = 2131230962;
 			
 			// aapt resource value: 0x7F0800F3
-			public const int txtPopupUsernamame = 2131230963;
+			public const int txtPopupUsername = 2131230963;
 			
 			// aapt resource value: 0x7F0800F4
 			public const int txtRoomDescription = 2131230964;
