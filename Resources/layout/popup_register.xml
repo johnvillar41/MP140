@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#faebd7"
+    >
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txtPopupUsernamame"
+            android:gravity="center"
+            android:hint="username"
+            android:ems="10"
+            android:textColor="#f0ad4e"
+			android:textColorHint="#f0ad4e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+         <EditText
+            android:id="@+id/txtPopupPassword"
+            android:gravity="center"
+            android:hint="password"
+            android:ems="10"
+            android:textColor="#f0ad4e"
+			android:textColorHint="#f0ad4e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+         <EditText
+            android:id="@+id/txtPopupRealname"
+            android:gravity="center"
+            android:hint="Real Name"
+            android:ems="10"
+            android:textColor="#f0ad4e"
+			android:textColorHint="#f0ad4e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        
+        <Button
+            android:text="Register"
+            android:id="@+id/btnPopupRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#f0ad4e"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

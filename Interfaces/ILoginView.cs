@@ -16,5 +16,7 @@ namespace MP140.Interfaces
         void DisplayProgressbar();
         void HideProgressBar();
         void DisplayRegistrationPopup();
+        void RedirectToRoomView();
+        void DisplayErrorMessage();
     }
 }
