@@ -4,6 +4,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.RecyclerView.Widget;
+using MP140.Adapter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +13,15 @@ using System.Text;
 
 namespace MP140.Views
 {
-    [Activity(Label = "MainView")]
-    public class MainView : Activity
-    {
+    [Activity(Label = "TodoView")]
+    public class TodoView : Activity
+    {       
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main_view);
-        }
+            
+        }        
     }
 }

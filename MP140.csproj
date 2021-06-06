@@ -64,14 +64,18 @@
     <Compile Include="Adapter\RoomAdapter.cs" />
     <Compile Include="Adapter\RoomViewHolder.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Interfaces\IRoomView.cs" />
     <Compile Include="Models\RoomDataModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\TodoModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Presenters\RoomPresenter.cs" />
+    <Compile Include="Interfaces\IRoomRepository.cs" />
+    <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\TodoView.cs" />
     <Compile Include="Views\RoomView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +109,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
