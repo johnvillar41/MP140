@@ -5,6 +5,8 @@ namespace MP140.Interfaces
 {
     public interface IRoomView
     {
+        void DisplayProgressbar();
         void DisplayRooms(List<RoomModel> rooms);
+        void HideProgressBar();
     }
 }

@@ -7,5 +7,6 @@ namespace MP140.Interfaces
     public interface IRoomRepository
     {
         List<RoomModel> FetchAllRooms();
+        void AddNewRoom(RoomModel newRoom);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MP140.Interfaces;
+using MP140.Models;
 using MP140.Repositories;
 using MP140.Views;
 using System.Threading;
@@ -18,10 +19,21 @@ namespace MP140.Presenters
         {
             Thread thread = new Thread(() =>
             {
+                _view.DisplayProgressbar();
                 var rooms = _repository.FetchAllRooms();
                 _view.DisplayRooms(rooms);
+                _view.HideProgressBar();
             });
             thread.Start();
         }       
+        public void OnAddNewRoom(RoomModel newRoom)
+        {
+            Thread thread = new Thread(() =>
+            {
+                _view.DisplayProgressbar();
+                _repository.AddNewRoom(newRoom);
+                _view.HideProgressBar();
+            });
+        }
     }
 }

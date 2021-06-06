@@ -7,9 +7,9 @@ namespace MP140.Repositories
 {
     public class RoomRepository : IRoomRepository
     {
-        private RoomRepository instance = null;
+        private static RoomRepository instance = null;
         private RoomRepository() { }
-        public RoomRepository SingleInstance
+        public static RoomRepository SingleInstance
         {
             get
             {
@@ -20,6 +20,12 @@ namespace MP140.Repositories
                 return instance;
             }
         }
+
+        public void AddNewRoom(RoomModel newRoom)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<RoomModel> FetchAllRooms()
         {
             return new List<RoomModel>
