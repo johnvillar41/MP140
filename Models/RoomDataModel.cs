@@ -1,10 +1,12 @@
-﻿namespace MP140.Models
+﻿using System.Collections.Generic;
+
+namespace MP140.Models
 {
     public class RoomDataModel
     {
         public int Id { get; set; }
-        public UserModel User { get; set; }
-        public RoomModel Room { get; set; }
-        public TodoModel TodoItem { get; set; }
+        public IEnumerable<UserModel> User { get; set; }
+        public IEnumerable<RoomModel> Room { get; set; }
+        public IEnumerable<TodoModel> TodoItem { get; set; }
     }
 }
