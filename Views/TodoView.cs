@@ -29,6 +29,7 @@ namespace MP140.Views
         private RecyclerView _recyclerViewTodos;
 
         private TodoPresenter _presenter;
+        string id = string.Empty;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,7 +37,7 @@ namespace MP140.Views
             SetContentView(Resource.Layout.activity_todoview);
             InitializeViews();
 
-            string id = Intent.GetStringExtra(Constants.ROOM_ID);
+            id = Intent.GetStringExtra(Constants.ROOM_ID);
             _presenter.OnViewAllTodos(int.Parse(id));
             _btnAddTodo.Click += (o, e) =>
             {
@@ -98,18 +99,18 @@ namespace MP140.Views
 
             EditText title = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupTitle);
             EditText description = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupDescription);
-            Button btnAddTodo = popupDialog.FindViewById<Button>(Resource.Id.btnAddTodo);
-
-            var todoItem = new TodoModel
+            Button btnPopupAddTodo = popupDialog.FindViewById<Button>(Resource.Id.btnPopupAddTodo);
+            
+            btnPopupAddTodo.Click += (o, e) =>
             {
-                Title = title.Text.ToString(),
-                Description = description.Text.ToString(),
-                DateStarted = DateTime.Now,
-                Status = Constants.Status.Doing
-            };
-            btnAddTodo.Click += (o, e) =>
-            {
-                _presenter.OnAddTodoItem(todoItem);
+                var todoItem = new TodoModel
+                {
+                    Title = title.Text.ToString(),
+                    Description = description.Text.ToString(),
+                    DateStarted = DateTime.Now,
+                    Status = Constants.Status.Doing
+                };
+                _presenter.OnAddTodoItem(todoItem, int.Parse(id));
             };
         }
         private void InitializeViews()

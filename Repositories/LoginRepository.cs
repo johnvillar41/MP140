@@ -1,5 +1,7 @@
 ﻿using MP140.Interfaces;
 using MP140.Models;
+using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Net;
 using System.Text.Json;
@@ -23,15 +25,26 @@ namespace MP140.Repositories
 
         public bool CheckUserLoggedIn(string username, string password)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}login.php?username={username}&password={password}");
-            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-            using StreamReader reader = new StreamReader(response.GetResponseStream());
-            string res = reader.ReadToEnd();
-            if (res.Contains("OK!"))
+            try
             {
-                return true;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}login.php?username={username}&password={password}");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                using StreamReader reader = new StreamReader(response.GetResponseStream());
+                var res = reader.ReadToEnd();
+                using JsonDocument doc = JsonDocument.Parse(res);
+                JsonElement root = doc.RootElement;
+                if (root[0].ToString().Length != 0)
+                {
+                    UserSession.UserID = int.Parse(root[0].GetProperty("User_ID").ToString());
+                    return true;
+                }
+                return false;
             }
-            return false;      
+            catch (Exception)
+            {
+                return false;
+            }            
+            
         }
 
         public void RegisterUser(UserModel newUser)

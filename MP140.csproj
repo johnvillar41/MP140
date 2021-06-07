@@ -84,6 +84,7 @@
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Repositories\TodoRepository.cs" />
+    <Compile Include="UserSession.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +126,9 @@
     <AndroidResource Include="Resources\layout\popup_room.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>5.0.2</Version>
     </PackageReference>

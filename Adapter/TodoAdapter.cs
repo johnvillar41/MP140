@@ -29,9 +29,15 @@ namespace MP140.Adapter
             viewHolder.DateStarted.Text = _todoModels[position].DateStarted.ToString();
             viewHolder.DateFinished.Text = _todoModels[position].DateFinished.ToString();
             if (_todoModels[position].Status.Equals(Constants.Status.Doing))
+            {
                 viewHolder.ImageStatus.SetImageResource(Resource.Drawable.doing);
+                viewHolder.TodoStatus.SetTextColor(Android.Graphics.Color.Blue);                
+            }                
             if (_todoModels[position].Status.Equals(Constants.Status.Done))
+            {
                 viewHolder.ImageStatus.SetImageResource(Resource.Drawable.done);
+                viewHolder.TodoStatus.SetTextColor(Android.Graphics.Color.Green);
+            }                
         }
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {

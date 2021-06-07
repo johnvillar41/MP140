@@ -13,12 +13,12 @@ namespace MP140.Presenters
             _view = view;
             _repository = repository;
         }
-        public void OnAddTodoItem(TodoModel newTodoItem)
+        public void OnAddTodoItem(TodoModel newTodoItem,int roomID)
         {
             Thread thread = new Thread(() =>
             {
                 _view.DisplayProgressBar();
-                _repository.AddTodoItem(newTodoItem);
+                _repository.AddTodoItem(newTodoItem, roomID);
                 _view.HideProgressBar();
             });
             thread.Start();

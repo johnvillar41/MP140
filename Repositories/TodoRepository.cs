@@ -23,11 +23,12 @@ namespace MP140.Repositories
                 return instance;
             }
         }
-        public void AddTodoItem(TodoModel newTodo)
+        public void AddTodoItem(TodoModel newTodo,int roomID)
         {
-            throw new System.NotImplementedException();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}AddTodoItem.php?todoTitle={newTodo.Title}&todoDescription={newTodo.Description}&DateStarted={newTodo.DateStarted.ToString("yyyy-dd-MM:G")}&Status={newTodo.Status}&userID={UserSession.UserID}&roomID={roomID}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
         }
-
         public void DeleteTodoItem(int todoId)
         {
             throw new System.NotImplementedException();
