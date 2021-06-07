@@ -22,7 +22,7 @@ namespace MP140.Adapter
             UserViewHolder viewHolder = holder as UserViewHolder;
             viewHolder.Username.Text = _userModels[position].Username.ToString();
             viewHolder.Fullname.Text = _userModels[position].Fullname.ToString();
-            viewHolder.UserID.Text = _userModels[position].Id.ToString();
+            viewHolder.UserID.Text = _userModels[position].Id.ToString();            
         }
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {

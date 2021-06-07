@@ -24,6 +24,7 @@ namespace MP140.Views
         private ProgressBar _progressBar;
         private FloatingActionButton _btnAddTodo;
         private FloatingActionButton _btnDisplayUsers;
+        private RecyclerView _recyclerViewTodos;
 
         private TodoPresenter _presenter;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -46,10 +47,13 @@ namespace MP140.Views
         {
             RunOnUiThread(() =>
             {
-
+                _recyclerViewTodos = FindViewById<RecyclerView>(Resource.Id.recyclerViewTodo);
+                TodoAdapter adapter = new TodoAdapter(todoModels);
+                _recyclerViewTodos.SetAdapter(adapter);
+                LayoutManager layoutManager = new LinearLayoutManager(this);
+                _recyclerViewTodos.SetLayoutManager(layoutManager);
             });
         }
-
         public void DisplayUsersInAGivenRoom(List<UserModel> userModels)
         {
             RunOnUiThread(() =>

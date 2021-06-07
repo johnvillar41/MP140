@@ -3371,13 +3371,16 @@ namespace MP140
 			public const int notify_panel_notification_icon_bg = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int sports = 2131165313;
+			public const int person = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int tooltip_frame_dark = 2131165314;
+			public const int sports = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int tooltip_frame_light = 2131165315;
+			public const int tooltip_frame_dark = 2131165315;
+			
+			// aapt resource value: 0x7F070084
+			public const int tooltip_frame_light = 2131165316;
 			
 			static Drawable()
 			{
