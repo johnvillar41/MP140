@@ -19,8 +19,8 @@ namespace MP140.Views
     /// <summary>
     ///     This Will Display both the users and the todos inside a specific room
     /// </summary>
-    [Activity(Label = "TodoView", LaunchMode =LaunchMode.SingleTask)]
-    
+    [Activity(Label = "TodoView", LaunchMode = LaunchMode.SingleTask)]
+
     public class TodoView : Activity, ITodoView
     {
         private ProgressBar _progressBar;
@@ -29,6 +29,7 @@ namespace MP140.Views
         private RecyclerView _recyclerViewTodos;
 
         private TodoPresenter _presenter;
+        private TodoAdapter _adapter;
         string id = string.Empty;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,7 +45,7 @@ namespace MP140.Views
                 DisplayPopupAddTodo();
             };
             _btnDisplayUsers.Click += (o, e) =>
-            {                
+            {
                 _presenter.OnViewUsers(int.Parse(id));
             };
         }
@@ -53,8 +54,8 @@ namespace MP140.Views
             RunOnUiThread(() =>
             {
                 _recyclerViewTodos = FindViewById<RecyclerView>(Resource.Id.recyclerViewTodo);
-                TodoAdapter adapter = new TodoAdapter(todoModels);
-                _recyclerViewTodos.SetAdapter(adapter);
+                _adapter = new TodoAdapter(todoModels, _presenter,int.Parse(id));
+                _recyclerViewTodos.SetAdapter(_adapter);
                 LayoutManager layoutManager = new LinearLayoutManager(this);
                 _recyclerViewTodos.SetLayoutManager(layoutManager);
             });
@@ -100,7 +101,7 @@ namespace MP140.Views
             EditText title = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupTitle);
             EditText description = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupDescription);
             Button btnPopupAddTodo = popupDialog.FindViewById<Button>(Resource.Id.btnPopupAddTodo);
-            
+
             btnPopupAddTodo.Click += (o, e) =>
             {
                 var todoItem = new TodoModel
@@ -111,6 +112,8 @@ namespace MP140.Views
                     Status = Constants.Status.Doing
                 };
                 _presenter.OnAddTodoItem(todoItem, int.Parse(id));
+                _presenter.OnViewAllTodos(int.Parse(id));
+                _adapter.NotifyDataSetChanged();
             };
         }
         private void InitializeViews()

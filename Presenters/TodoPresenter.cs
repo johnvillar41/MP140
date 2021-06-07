@@ -13,7 +13,7 @@ namespace MP140.Presenters
             _view = view;
             _repository = repository;
         }
-        public void OnAddTodoItem(TodoModel newTodoItem,int roomID)
+        public void OnAddTodoItem(TodoModel newTodoItem, int roomID)
         {
             Thread thread = new Thread(() =>
             {
@@ -41,6 +41,16 @@ namespace MP140.Presenters
                 _view.DisplayProgressBar();
                 var todos = _repository.FetchAllTodosInARoom(roomID);
                 _view.DisplayTodosInAGivenRoom(todos);
+                _view.HideProgressBar();
+            });
+            thread.Start();
+        }
+        public void OnDeleteTodoItem(int todoID)
+        {
+            Thread thread = new Thread(() =>
+            {
+                _view.DisplayProgressBar();
+                _repository.DeleteTodoItem(todoID);
                 _view.HideProgressBar();
             });
             thread.Start();

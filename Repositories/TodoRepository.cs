@@ -31,7 +31,9 @@ namespace MP140.Repositories
         }
         public void DeleteTodoItem(int todoId)
         {
-            throw new System.NotImplementedException();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}DeleteTodoItem.php?todoID={todoId}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
         }
 
         public List<TodoModel> FetchAllTodosInARoom(int roomID)

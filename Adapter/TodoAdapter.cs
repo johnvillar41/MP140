@@ -1,6 +1,7 @@
 ﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using MP140.Models;
+using MP140.Presenters;
 using System.Collections.Generic;
 
 namespace MP140.Adapter
@@ -8,9 +9,13 @@ namespace MP140.Adapter
     public class TodoAdapter : RecyclerView.Adapter
     {
         private readonly List<TodoModel> _todoModels;
-        public TodoAdapter(List<TodoModel> todoModels)
+        private readonly TodoPresenter _presenter;
+        private readonly int _roomID;
+        public TodoAdapter(List<TodoModel> todoModels,TodoPresenter presenter,int roomID)
         {
             _todoModels = todoModels;
+            _presenter = presenter;
+            _roomID = roomID;
         }
         public override int ItemCount
         {
@@ -37,7 +42,13 @@ namespace MP140.Adapter
             {
                 viewHolder.ImageStatus.SetImageResource(Resource.Drawable.done);
                 viewHolder.TodoStatus.SetTextColor(Android.Graphics.Color.Green);
-            }                
+            }
+            viewHolder.CardViewTodo.LongClick += (o, e) =>
+            {
+                _presenter.OnDeleteTodoItem(_todoModels[position].Id);
+                _presenter.OnViewAllTodos(_roomID);
+                NotifyItemRangeRemoved(position, ItemCount);
+            };
         }
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {

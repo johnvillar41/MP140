@@ -1,5 +1,6 @@
 ﻿using Android.Views;
 using Android.Widget;
+using AndroidX.CardView.Widget;
 using AndroidX.RecyclerView.Widget;
 
 namespace MP140.Adapter
@@ -13,6 +14,7 @@ namespace MP140.Adapter
         public TextView DateStarted { get; set; }
         public TextView DateFinished { get; set; }
         public ImageView ImageStatus { get; set; }
+        public CardView CardViewTodo { get; set; }
         public TodoViewHolder(View itemView) : base(itemView)
         {
             TodoId = itemView.FindViewById<TextView>(Resource.Id.todoId);
@@ -22,6 +24,7 @@ namespace MP140.Adapter
             DateStarted = itemView.FindViewById<TextView>(Resource.Id.todoDateStart);
             DateFinished = itemView.FindViewById<TextView>(Resource.Id.todoDateEnd);
             ImageStatus = itemView.FindViewById<ImageView>(Resource.Id.imageStatus);
+            CardViewTodo = itemView.FindViewById<CardView>(Resource.Id.cardViewTodo);
         }
     }
 }
