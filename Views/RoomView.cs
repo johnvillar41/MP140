@@ -52,15 +52,7 @@ namespace MP140.Views
             {
                 _progressBar.Visibility = ViewStates.Visible;
             });
-        }
-        public void RedirectToTodoView(int roomID)
-        {
-            RunOnUiThread(() =>
-            {
-                Intent intent = new Intent(this, typeof(TodoView));
-                StartActivity(intent);
-            });
-        }
+        }       
         public void HideProgressBar()
         {
             RunOnUiThread(() =>

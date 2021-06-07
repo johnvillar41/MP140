@@ -8,5 +8,6 @@ namespace MP140.Interfaces
         void AddTodoItem(TodoModel newTodo);
         void DeleteTodoItem(int todoId);
         List<TodoModel> FetchAllTodosInARoom(int roomID);
+        List<UserModel> FetchAllUsersInARoom(int roomID);
     }
 }

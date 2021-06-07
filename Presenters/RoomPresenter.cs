@@ -33,10 +33,6 @@ namespace MP140.Presenters
                 _view.HideProgressBar();
             });
             thread.Start();
-        }
-        public void OnRoomClicked(int roomID)
-        {            
-            _view.RedirectToTodoView(roomID);           
-        }
+        }        
     }
 }

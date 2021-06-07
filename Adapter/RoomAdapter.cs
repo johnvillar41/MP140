@@ -50,7 +50,7 @@ namespace MP140.Adapter
             viewHolder.RoomCard.Click += (o, e) =>
             {
                 Intent intent = new Intent(_context,typeof(TodoView));
-                intent.PutExtra(Constants.ROOM_ID, _roomModels[position].Id);
+                intent.PutExtra(Constants.ROOM_ID, _roomModels[position].Id.ToString());
                 _context.StartActivity(intent);
             };
         }

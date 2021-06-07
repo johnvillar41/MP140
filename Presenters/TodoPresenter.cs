@@ -23,5 +23,16 @@ namespace MP140.Presenters
             });
             thread.Start();
         }
+        public void OnViewUsers(int roomID)
+        {
+            Thread thread = new Thread(() =>
+            {
+                _view.DisplayProgressBar();
+                var users = _repository.FetchAllUsersInARoom(roomID);
+                _view.DisplayUsersInAGivenRoom(users);
+                _view.HideProgressBar();
+            });
+            thread.Start();
+        }
     }
 }
