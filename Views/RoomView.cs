@@ -107,9 +107,10 @@ namespace MP140.Views
                         newRoom.RoomType = Constants.RoomType.Sports;
                         break;
                 }
-                _presenter.OnAddNewRoom(newRoom);                
-            };
-            _presenter.LoadRooms();
+                _presenter.OnAddNewRoom(newRoom);
+                _presenter.LoadRooms();
+                _adapter.NotifyDataSetChanged();
+            };            
         }
         private void InitializeViews()
         {
