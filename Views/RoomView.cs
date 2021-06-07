@@ -11,6 +11,7 @@ using MP140.Presenters;
 using MP140.Repositories;
 using System;
 using System.Collections.Generic;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace MP140.Views
 {
@@ -38,8 +39,10 @@ namespace MP140.Views
         {
             RunOnUiThread(() =>
             {
-                _adapter = new RoomAdapter(rooms, this);
+                _adapter = new RoomAdapter(rooms,this);
                 _recyclerView.SetAdapter(_adapter);
+                LayoutManager layoutManager = new LinearLayoutManager(this);
+                _recyclerView.SetLayoutManager(layoutManager);
             });
         }
         public void DisplayProgressbar()
