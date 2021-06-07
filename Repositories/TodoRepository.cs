@@ -49,13 +49,16 @@ namespace MP140.Repositories
                     Id = int.Parse(root[i].GetProperty("Todo_ID").ToString()),
                     Title = root[i].GetProperty("Title").ToString(),
                     Description = root[i].GetProperty("Description").ToString(),
-                    DateStarted = DateTime.Parse(root[i].GetProperty("Date_Created").ToString()),
-                    //DateFinished = DateTime.Parse(root[i].GetProperty("Date_Finished").ToString()),
+                    DateStarted = DateTime.Parse(root[i].GetProperty("Date_Created").ToString())                   
                 };
                 if (root[i].GetProperty("Status").ToString().Equals(nameof(Constants.Status.Doing)))
                     todoItem.Status = Constants.Status.Doing;
                 if (root[i].GetProperty("Status").ToString().Equals(nameof(Constants.Status.Done)))
                     todoItem.Status = Constants.Status.Done;
+                if (root[i].GetProperty("Date_Finished").ToString().Length != 0)
+                    todoItem.DateFinished = DateTime.Parse(root[i].GetProperty("Date_Finished").ToString());
+                else
+                    todoItem.DateFinished = null;
                 todoModels.Add(todoItem);
             }
             return todoModels;

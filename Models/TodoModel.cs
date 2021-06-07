@@ -10,6 +10,6 @@ namespace MP140.Models
         public string Description { get; set; }
         public DateTime DateStarted { get; set; }
         public Status Status { get; set; }
-        public DateTime DateFinished { get; set; }
+        public DateTime? DateFinished { get; set; }
     }
 }
