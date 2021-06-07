@@ -29,7 +29,7 @@ namespace MP140.Repositories
             throw new System.NotImplementedException();
         }
 
-        public List<TodoModel> FetchAllTodos()
+        public List<TodoModel> FetchAllTodosInARoom(int roomID)
         {
             throw new System.NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace MP140.Presenters
     {
         private readonly IRoomView _view;
         private readonly IRoomRepository _repository;
-        public RoomPresenter(IRoomView view,IRoomRepository repository)
+        public RoomPresenter(IRoomView view, IRoomRepository repository)
         {
             _view = view;
             _repository = repository;
@@ -23,7 +23,7 @@ namespace MP140.Presenters
                 _view.HideProgressBar();
             });
             thread.Start();
-        }       
+        }
         public void OnAddNewRoom(RoomModel newRoom)
         {
             Thread thread = new Thread(() =>
@@ -33,6 +33,10 @@ namespace MP140.Presenters
                 _view.HideProgressBar();
             });
             thread.Start();
+        }
+        public void OnRoomClicked(int roomID)
+        {            
+            _view.RedirectToTodoView(roomID);           
         }
     }
 }

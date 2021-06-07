@@ -16,8 +16,7 @@ namespace MP140.Adapter
         {
             _roomModels = roomModels;
             _context = context;
-        }
-
+        }        
         public override int ItemCount
         {
             get { return ((List<RoomModel>)_roomModels).Count; }

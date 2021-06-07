@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -19,7 +20,7 @@ namespace MP140.Views
     public class RoomView : Activity, IRoomView
     {
         private FloatingActionButton _btnAddRoom;
-        private ProgressBar _progressBar;       
+        private ProgressBar _progressBar;
 
         private RoomAdapter _adapter;
         private RecyclerView _recyclerView;
@@ -39,11 +40,10 @@ namespace MP140.Views
         {
             RunOnUiThread(() =>
             {
-                _adapter = new RoomAdapter(rooms,this);
+                _adapter = new RoomAdapter(rooms, this);
                 _recyclerView.SetAdapter(_adapter);
                 LayoutManager layoutManager = new LinearLayoutManager(this);
                 _recyclerView.SetLayoutManager(layoutManager);
-                _adapter.NotifyDataSetChanged();
             });
         }
         public void DisplayProgressbar()
@@ -53,7 +53,14 @@ namespace MP140.Views
                 _progressBar.Visibility = ViewStates.Visible;
             });
         }
-
+        public void RedirectToTodoView(int roomID)
+        {
+            RunOnUiThread(() =>
+            {
+                Intent intent = new Intent(this, typeof(TodoView));
+                StartActivity(intent);
+            });
+        }
         public void HideProgressBar()
         {
             RunOnUiThread(() =>
@@ -72,7 +79,7 @@ namespace MP140.Views
             EditText editTextRoomDescription = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupRoomDescription);
             Spinner spinnerRoomType = popupDialog.FindViewById<Spinner>(Resource.Id.spinnerPopupRoomType);
             Button btnAddRoom = popupDialog.FindViewById<Button>(Resource.Id.btnPopupAddRoom);
-            
+
             List<string> roomTypes = new List<string>
             {
                 Constants.RoomType.Academics.ToString(),
@@ -81,10 +88,10 @@ namespace MP140.Views
                 Constants.RoomType.Sports.ToString()
             };
 
-            var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem,roomTypes);
+            var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, roomTypes);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinnerRoomType.Adapter = adapter;
-            
+
             btnAddRoom.Click += (o, e) =>
             {
                 var newRoom = new RoomModel
@@ -109,15 +116,16 @@ namespace MP140.Views
                         break;
                 }
                 _presenter.OnAddNewRoom(newRoom);
-                _presenter.LoadRooms();              
-            };            
+            };
         }
         private void InitializeViews()
         {
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.roomRecyclerView);
             _progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
-            _btnAddRoom = FindViewById<FloatingActionButton>(Resource.Id.btnAddRoom);            
+            _btnAddRoom = FindViewById<FloatingActionButton>(Resource.Id.btnAddRoom);
             _presenter = new RoomPresenter(this, RoomRepository.SingleInstance);
         }
+
+
     }
 }
