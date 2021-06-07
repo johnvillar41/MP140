@@ -12,6 +12,7 @@ namespace MP140.Adapter
         public TextView TodoStatus { get; set; }
         public TextView DateStarted { get; set; }
         public TextView DateFinished { get; set; }
+        public ImageView ImageStatus { get; set; }
         public TodoViewHolder(View itemView) : base(itemView)
         {
             TodoId = itemView.FindViewById<TextView>(Resource.Id.todoId);
@@ -20,6 +21,7 @@ namespace MP140.Adapter
             TodoStatus = itemView.FindViewById<TextView>(Resource.Id.todoStatus);
             DateStarted = itemView.FindViewById<TextView>(Resource.Id.todoDateStart);
             DateFinished = itemView.FindViewById<TextView>(Resource.Id.todoDateEnd);
+            ImageStatus = itemView.FindViewById<ImageView>(Resource.Id.imageStatus);
         }
     }
 }

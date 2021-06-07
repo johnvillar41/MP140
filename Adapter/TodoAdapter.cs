@@ -12,8 +12,8 @@ namespace MP140.Adapter
         {
             _todoModels = todoModels;
         }
-        public override int ItemCount 
-        { 
+        public override int ItemCount
+        {
             get
             {
                 return _todoModels.Count;
@@ -28,6 +28,10 @@ namespace MP140.Adapter
             viewHolder.TodoStatus.Text = _todoModels[position].Status.ToString();
             viewHolder.DateStarted.Text = _todoModels[position].DateStarted.ToString();
             viewHolder.DateFinished.Text = _todoModels[position].DateFinished.ToString();
+            if (_todoModels[position].Status.Equals(Constants.Status.Doing))
+                viewHolder.ImageStatus.SetImageResource(Resource.Drawable.doing);
+            if (_todoModels[position].Status.Equals(Constants.Status.Done))
+                viewHolder.ImageStatus.SetImageResource(Resource.Drawable.done);
         }
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
