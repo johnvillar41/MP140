@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -18,7 +19,8 @@ namespace MP140.Views
     /// <summary>
     ///     This Will Display both the users and the todos inside a specific room
     /// </summary>
-    [Activity(Label = "TodoView")]
+    [Activity(Label = "TodoView", LaunchMode =LaunchMode.SingleTask)]
+    
     public class TodoView : Activity, ITodoView
     {
         private ProgressBar _progressBar;
@@ -33,7 +35,9 @@ namespace MP140.Views
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_todoview);
             InitializeViews();
+
             string id = Intent.GetStringExtra(Constants.ROOM_ID);
+            _presenter.OnViewAllTodos(int.Parse(id));
             _btnAddTodo.Click += (o, e) =>
             {
                 DisplayPopupAddTodo();

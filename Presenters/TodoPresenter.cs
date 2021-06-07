@@ -34,5 +34,16 @@ namespace MP140.Presenters
             });
             thread.Start();
         }
+        public void OnViewAllTodos(int roomID)
+        {
+            Thread thread = new Thread(() =>
+            {
+                _view.DisplayProgressBar();
+                var todos = _repository.FetchAllTodosInARoom(roomID);
+                _view.DisplayTodosInAGivenRoom(todos);
+                _view.HideProgressBar();
+            });
+            thread.Start();
+        }
     }
 }

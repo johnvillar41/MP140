@@ -32,7 +32,7 @@ namespace MP140.Adapter
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).
-                     Inflate(Resource.Layout.user_recyclerview, parent, false);
+                     Inflate(Resource.Layout.todo_recyclerview, parent, false);
             TodoViewHolder viewHolder = new TodoViewHolder(itemView);
             return viewHolder;
         }
