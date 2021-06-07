@@ -9,7 +9,7 @@ namespace MP140.Adapter
 {
     public class RoomAdapter : RecyclerView.Adapter
     {
-        private readonly List<RoomModel> _roomModels;
+        private List<RoomModel> _roomModels;
         private readonly Context _context;
 
         public RoomAdapter(List<RoomModel> roomModels,Context context)
@@ -21,6 +21,11 @@ namespace MP140.Adapter
         public override int ItemCount
         {
             get { return ((List<RoomModel>)_roomModels).Count; }
+        }
+        public void UpdateData(List<RoomModel> updatedRooms)
+        {
+            _roomModels = new List<RoomModel>();
+            _roomModels.AddRange(updatedRooms);
         }
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {

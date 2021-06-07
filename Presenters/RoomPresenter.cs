@@ -1,7 +1,5 @@
 ﻿using MP140.Interfaces;
 using MP140.Models;
-using MP140.Repositories;
-using MP140.Views;
 using System.Threading;
 
 namespace MP140.Presenters
@@ -34,6 +32,7 @@ namespace MP140.Presenters
                 _repository.AddNewRoom(newRoom);
                 _view.HideProgressBar();
             });
+            thread.Start();
         }
     }
 }

@@ -53,16 +53,16 @@ namespace MP140.Repositories
                 };
                 switch (root[i].GetProperty("Room_Type").ToString())
                 {
-                    case "Academics":
+                    case nameof(Constants.RoomType.Academics):
                         model.RoomType = Constants.RoomType.Academics;
                         break;
-                    case "Sports":
+                    case nameof(Constants.RoomType.Sports):
                         model.RoomType = Constants.RoomType.Sports;
                         break;
-                    case "Games":
+                    case nameof(Constants.RoomType.Games):
                         model.RoomType = Constants.RoomType.Games;
                         break;
-                    case "Hangouts":
+                    case nameof(Constants.RoomType.Hangouts):
                         model.RoomType = Constants.RoomType.Hangouts;
                         break;
                 }

@@ -19,7 +19,7 @@ namespace MP140.Views
     public class RoomView : Activity, IRoomView
     {
         private FloatingActionButton _btnAddRoom;
-        private ProgressBar _progressBar;
+        private ProgressBar _progressBar;       
 
         private RoomAdapter _adapter;
         private RecyclerView _recyclerView;
@@ -43,6 +43,7 @@ namespace MP140.Views
                 _recyclerView.SetAdapter(_adapter);
                 LayoutManager layoutManager = new LinearLayoutManager(this);
                 _recyclerView.SetLayoutManager(layoutManager);
+                _adapter.NotifyDataSetChanged();
             });
         }
         public void DisplayProgressbar()
@@ -71,39 +72,51 @@ namespace MP140.Views
             EditText editTextRoomDescription = popupDialog.FindViewById<EditText>(Resource.Id.txtPopupRoomDescription);
             Spinner spinnerRoomType = popupDialog.FindViewById<Spinner>(Resource.Id.spinnerPopupRoomType);
             Button btnAddRoom = popupDialog.FindViewById<Button>(Resource.Id.btnPopupAddRoom);
-
-            var newRoom = new RoomModel
+            
+            List<string> roomTypes = new List<string>
             {
-                RoomName = editTextRoomName.Text.ToString(),
-                RoomDescription = editTextRoomDescription.Text.ToString()
+                Constants.RoomType.Academics.ToString(),
+                Constants.RoomType.Games.ToString(),
+                Constants.RoomType.Hangouts.ToString(),
+                Constants.RoomType.Sports.ToString()
             };
-            var roomText = spinnerRoomType.Selected.ToString();
-            switch (roomText)
-            {
-                case nameof(Constants.RoomType.Academics):
-                    newRoom.RoomType = Constants.RoomType.Academics;
-                    break;
-                case nameof(Constants.RoomType.Games):
-                    newRoom.RoomType = Constants.RoomType.Games;
-                    break;
-                case nameof(Constants.RoomType.Hangouts):
-                    newRoom.RoomType = Constants.RoomType.Hangouts;
-                    break;
-                case nameof(Constants.RoomType.Sports):
-                    newRoom.RoomType = Constants.RoomType.Sports;
-                    break;
-            }
+
+            var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem,roomTypes);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinnerRoomType.Adapter = adapter;
+            
             btnAddRoom.Click += (o, e) =>
             {
+                var newRoom = new RoomModel
+                {
+                    RoomName = editTextRoomName.Text.ToString(),
+                    RoomDescription = editTextRoomDescription.Text.ToString()
+                };
+                var roomText = spinnerRoomType.SelectedItem.ToString();
+                switch (roomText)
+                {
+                    case nameof(Constants.RoomType.Academics):
+                        newRoom.RoomType = Constants.RoomType.Academics;
+                        break;
+                    case nameof(Constants.RoomType.Games):
+                        newRoom.RoomType = Constants.RoomType.Games;
+                        break;
+                    case nameof(Constants.RoomType.Hangouts):
+                        newRoom.RoomType = Constants.RoomType.Hangouts;
+                        break;
+                    case nameof(Constants.RoomType.Sports):
+                        newRoom.RoomType = Constants.RoomType.Sports;
+                        break;
+                }
                 _presenter.OnAddNewRoom(newRoom);
-                _adapter.NotifyDataSetChanged();
-            };
+                _presenter.LoadRooms();              
+            };            
         }
         private void InitializeViews()
         {
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.roomRecyclerView);
             _progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
-            _btnAddRoom = FindViewById<FloatingActionButton>(Resource.Id.btnAddRoom);
+            _btnAddRoom = FindViewById<FloatingActionButton>(Resource.Id.btnAddRoom);            
             _presenter = new RoomPresenter(this, RoomRepository.SingleInstance);
         }
     }
