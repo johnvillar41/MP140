@@ -1,7 +1,9 @@
 ﻿using MP140.Interfaces;
 using MP140.Models;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Text.Json;
 
 namespace MP140.Repositories
 {
@@ -20,43 +22,53 @@ namespace MP140.Repositories
                 return instance;
             }
         }
-
         public void AddNewRoom(RoomModel newRoom)
         {
-            throw new System.NotImplementedException();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}addRoom.php?roomName={newRoom.RoomName}&roomDescription={newRoom.RoomDescription}&roomType={newRoom.RoomType}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
         }
-
         public void DeleteRoom(int roomId)
         {
-            throw new System.NotImplementedException();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}deleteRoom.php?roomID{roomId}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
         }
-
         public List<RoomModel> FetchAllRooms()
         {
-            return new List<RoomModel>
+            List<RoomModel> roomModels = new List<RoomModel>();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{Constants.ROOT_URL}fetchAllRooms.php");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using StreamReader reader = new StreamReader(response.GetResponseStream());
+            var res = reader.ReadToEnd();
+            using JsonDocument doc = JsonDocument.Parse(res);
+            JsonElement root = doc.RootElement;
+            for (int i = 0; i < root.GetArrayLength(); i++)
             {
-                new RoomModel
+                RoomModel model = new RoomModel
                 {
-                    Id = 1,
-                    RoomName = "Math",
-                    RoomDescription = "HUEHEUHEUEUE",
-                    RoomType = Constants.RoomType.Academics
-                },
-                new RoomModel
+                    Id = int.Parse(root[i].GetProperty("Room_ID").ToString()),
+                    RoomName = root[i].GetProperty("Room_Name").ToString(),
+                    RoomDescription = root[i].GetProperty("Room_Description").ToString()                    
+                };
+                switch (root[i].GetProperty("Room_Type").ToString())
                 {
-                    Id = 2,
-                    RoomName = "Science",
-                    RoomDescription = "HUEHEUHEUEUE",
-                    RoomType = Constants.RoomType.Academics
-                },
-                new RoomModel
-                {
-                    Id = 3,
-                    RoomName = "HEHHEE",
-                    RoomDescription = "HUEHEUHEUEUE",
-                    RoomType = Constants.RoomType.Academics
-                },
-            };
+                    case "Academics":
+                        model.RoomType = Constants.RoomType.Academics;
+                        break;
+                    case "Sports":
+                        model.RoomType = Constants.RoomType.Sports;
+                        break;
+                    case "Games":
+                        model.RoomType = Constants.RoomType.Games;
+                        break;
+                    case "Hangouts":
+                        model.RoomType = Constants.RoomType.Hangouts;
+                        break;
+                }
+                roomModels.Add(model);
+            }
+            return roomModels;
         }
     }
 }
